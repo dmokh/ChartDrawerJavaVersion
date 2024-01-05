@@ -1,3 +1,3 @@
 <p>
-Draw a chart by any expressions.
+Draw a graph by any expressions.
 </p>
