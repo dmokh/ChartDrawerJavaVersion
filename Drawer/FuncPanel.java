@@ -3,6 +3,7 @@ package Drawer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Arrays;
 import java.util.Vector;
 
 public class FuncPanel extends JFrame {
@@ -128,7 +129,9 @@ public class FuncPanel extends JFrame {
                 fp.gr.colors.add(settings.colors.get(fp.gr.colors.size() % 4));
             } else if (this.type == 3) {
                 if (fp.textFields.isEmpty()) return;
-                fp.textFields.remove(fp.textFields.size()-1);
+                fp.textFields.remove(fp.textFields.lastElement());
+                fp.colorButtons.remove(fp.colorButtons.lastElement());
+                fp.panel.remove(fp.panel.getComponents().length-1);
                 fp.panel.remove(fp.panel.getComponents().length-1);
                 fp.panel.remove(fp.panel.getComponents().length-1);
                 fp.setContentPane(fp.panel);
