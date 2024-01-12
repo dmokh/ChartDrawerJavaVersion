@@ -16,7 +16,7 @@ public class Graph extends Frame {
     Vector<Linear> lines = new Vector<>();
     Vector<Quadratic> quadratics = new Vector<>();
     Vector<Function> functions = new Vector<>();
-    List<Color> colors = new ArrayList<>();
+    List<Color> colors;
     public Graph() {
         this.colors = new ArrayList<>();
         this.setVisible(true);
@@ -143,7 +143,12 @@ public class Graph extends Frame {
         gr.fillRect(w - 1, 0, 2, height);
         gr.setColor(Color.black);
         gr.fillOval(w-5, h-5, 10, 10);
+        gr.setFont(new Font("arial", Font.BOLD, 12));
         gr.drawChars("0".toCharArray(), 0, 1, w+5, h+10);
+        gr.drawChars("1".toCharArray(), 0, 1, w+tile, h+10);
+        gr.drawChars("1".toCharArray(), 0, 1, w+5, h-tile);
+        gr.drawChars("x".toCharArray(), 0, 1, width-15, h+10);
+        gr.drawChars("y".toCharArray(), 0, 1, w+5, 40);
         width = this.getWidth();
         height = this.getHeight();
         for (int x = 0; x <= width; x += tile) {
@@ -164,7 +169,7 @@ public class Graph extends Frame {
             int y_p = h - (int) (function.get((double)(-w) / tile * scale) * tile / scale);
             double y1 = function.get((float) (-w) / tile * scale);
             int x = 1;
-            while (x <= width && !function.isDefinition((double) (x-w) / tile * scale)) {
+            while (x <= width && (StringFunc.except > 0 || !function.isDefinition((double) (x-w) / tile * scale))) {
                 y_p = h - (int) (function.get((double) (x - w) / tile * scale) * tile / scale);
                 y1 = function.get((double) (x - w) / tile * scale);
                 x++;
@@ -199,10 +204,5 @@ public class Graph extends Frame {
                 }
             }
         }
-    }
-
-    public static void main(String[] args) {
-        Graph graph = new Graph();
-        graph.setCenter();
     }
 }
